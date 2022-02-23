@@ -1,11 +1,9 @@
 import styled from "styled-components";
+import Badge from "@mui/material/Badge";
 
 export const Container = styled.header`
   margin-top: 1rem;
   padding: 2rem 0;
-  border-style: solid;
-  border-width: 3px 3px 0 3px;
-  border-color: white;
 
   @media (max-width: 1375px) {
     width: 100%;
@@ -15,12 +13,12 @@ export const Container = styled.header`
   @media (min-width: 1375px) {
     min-width: 1375px;
   }
+`;
 
-  .content {
-    display: flex;
-    max-width: 1075px;
-    margin: 0 auto;
-  }
+export const Content = styled.div`
+  display: flex;
+  max-width: 1075px;
+  margin: 0 auto;
 
   img {
     filter: invert(1);
@@ -36,6 +34,16 @@ export const Container = styled.header`
   .left {
     @media (max-width: 600px) {
       justify-content: flex-start;
+    }
+
+    * ~ * {
+      @media (max-width: 600px) {
+        padding-left: 1rem;
+      }
+
+      @media (min-width: 600px) {
+        padding-left: 3rem;
+      }
     }
   }
   .right {
@@ -53,16 +61,6 @@ export const Container = styled.header`
       font-size: 18px;
       font-weight: 500;
     }
-
-    * ~ * {
-      @media (max-width: 600px) {
-        padding-left: 1rem;
-      }
-
-      @media (min-width: 600px) {
-        padding-left: 3rem;
-      }
-    }
   }
   .pages {
     @media (max-width: 600px) {
@@ -71,3 +69,13 @@ export const Container = styled.header`
     }
   }
 `;
+
+export const StyledBadge = styled(Badge)(({ theme }) => ({
+  "& .MuiBadge-badge": {
+    backgroundColor: "black",
+    color: "white",
+    top: 26,
+    padding: "0 4px",
+    margin: "0 4px",
+  },
+}));

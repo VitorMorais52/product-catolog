@@ -3,9 +3,9 @@ import styled from "styled-components";
 export const Container = styled.main`
   padding: 2rem 0;
   background-color: #e1e0e0;
-  border-style: solid;
+  /* border-style: solid;
   border-width: 3px;
-  border-color: white;
+  border-color: white; */
 
   @media (max-width: 1375px) {
     width: 100%;
@@ -67,6 +67,7 @@ export const Grid = styled.div`
     display: flex;
     align-items: center;
     background-color: white;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
   }
 
   img {

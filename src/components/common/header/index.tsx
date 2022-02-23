@@ -1,38 +1,38 @@
 import { useState } from "react";
 import Drawer from "@mui/material/Drawer";
+import IconButton from "@mui/material/IconButton";
+
+//components
+import Menu from "../menu";
 
 //stylesheets and Icons
-import { Container } from "./styles";
+import { Container, Content, StyledBadge } from "./styles";
+
+import MenuIcon from "@mui/icons-material/Menu";
+import SearchIcon from "@mui/icons-material/Search";
+import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 
 import logoIcon from "../../../assets/logo.svg";
-import MenuIcon from "@mui/icons-material/Menu";
-import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
-import SearchIcon from "@mui/icons-material/Search";
 
 function Header() {
   const [isOpenDrawer, setIsOpenDrawer] = useState(false);
 
+  const handleOpenMenu = () => {
+    setIsOpenDrawer(true);
+  };
+  const handleCloseMenu = () => {
+    setIsOpenDrawer(!isOpenDrawer);
+  };
+
   return (
     <Container>
-      <Drawer
-        open={isOpenDrawer}
-        onClose={() => setIsOpenDrawer(!isOpenDrawer)}
-      >
-        <div
-          style={{
-            height: "100%",
-            width: "100%",
-            padding: "1rem",
-          }}
-        >
-          Menu
-        </div>
-      </Drawer>
-      <div className="content">
+      <Menu isOpen={isOpenDrawer} requestClose={handleCloseMenu} />
+
+      <Content>
         <div className="left info">
-          <button type="button" onClick={() => setIsOpenDrawer(!isOpenDrawer)}>
+          <IconButton onClick={handleOpenMenu}>
             <MenuIcon fontSize="large" />
-          </button>
+          </IconButton>
           <div className="pages">
             <span>Collections</span>
             <span>Categories</span>
@@ -42,14 +42,16 @@ function Header() {
           <img src={logoIcon} alt="logo" />
         </div>
         <div className="right info">
-          <button type="button">
+          <IconButton>
             <SearchIcon fontSize="large" />
-          </button>
-          <button type="button">
-            <ShoppingBagOutlinedIcon fontSize="large" />
-          </button>
+          </IconButton>
+          <IconButton>
+            <StyledBadge badgeContent={3}>
+              <ShoppingBagOutlinedIcon fontSize="large" />
+            </StyledBadge>
+          </IconButton>
         </div>
-      </div>
+      </Content>
     </Container>
   );
 }

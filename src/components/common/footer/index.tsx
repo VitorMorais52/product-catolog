@@ -2,7 +2,7 @@
 import { Container } from "./styles";
 
 function Footer() {
-  return <Container></Container>;
+  return <Container>footer</Container>;
 }
 
 export default Footer;

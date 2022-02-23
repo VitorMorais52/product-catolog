@@ -24,4 +24,16 @@ export const GlobalStyle = createGlobalStyle`
         font-weight: 300;
         line-height: 40px;;
     }
+
+    .App{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: #e1e0e0;
+
+    }
+
+ 
+
 `;

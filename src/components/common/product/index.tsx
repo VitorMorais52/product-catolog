@@ -3,6 +3,7 @@ import { ProductsContext } from "../../../services/context/products";
 
 //@mui components
 import Button from "@mui/material/Button";
+import Skeleton from "@mui/material/Skeleton";
 
 //stylesheets
 import { Container } from "./styles";
@@ -19,12 +20,11 @@ type ProductProps = {
 };
 
 type ProductComponentProps = {
-  product: ProductProps;
+  product?: ProductProps;
+  index?: number;
 };
 
-function Product({ product }: ProductComponentProps) {
-  console.log(product);
-
+function Product({ product, index }: ProductComponentProps) {
   const { products, storeProducts } = useContext(ProductsContext);
 
   const addProductCart = (product: ProductProps) => {
@@ -32,20 +32,32 @@ function Product({ product }: ProductComponentProps) {
   };
 
   return (
-    <Container key={product.id} onClick={() => addProductCart(product)}>
-      <div className="image">
-        <img src={product.image} alt="product" />
-      </div>
-      <div className="legend">
-        <span>{product.title}</span>
-        <span>R$ {product.price}</span>
-        <div className="addButton">
-          <Button variant="contained" endIcon={<AddShoppingCartIcon />}>
-            <span>Add to cart</span>
-          </Button>
-        </div>
-      </div>
-    </Container>
+    <>
+      {product?.id ? (
+        <Container key={product.id}>
+          <div className="image">
+            <img src={product.image} alt="product" />
+          </div>
+          <div className="legend">
+            <span>{product.title}</span>
+            <span>R$ {product.price}</span>
+            <div className="addButton">
+              <Button
+                variant="contained"
+                endIcon={<AddShoppingCartIcon />}
+                onClick={() => addProductCart(product)}
+              >
+                <span>Add to cart</span>
+              </Button>
+            </div>
+          </div>
+        </Container>
+      ) : (
+        <Container key={index}>
+          <Skeleton variant="rectangular" width={250} height={415}></Skeleton>
+        </Container>
+      )}
+    </>
   );
 }
 

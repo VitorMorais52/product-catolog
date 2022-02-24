@@ -39,8 +39,8 @@ function Home() {
         </div>
         <div className="container-grid">
           <Grid>
-            {data?.map((product) => (
-              <Product product={product} />
+            {(data || Array.from({ length: 8 })).map((product, index) => (
+              <Product product={product} index={index} />
             ))}
           </Grid>
         </div>

@@ -4,6 +4,7 @@ import IconButton from "@mui/material/IconButton";
 
 //components
 import Menu from "../menu";
+import MenuCart from "../menuCart";
 
 //stylesheets and Icons
 import { Container, Content, StyledBadge } from "./styles";
@@ -15,18 +16,26 @@ import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 import logoIcon from "../../../assets/logo.svg";
 
 function Header() {
-  const [isOpenDrawer, setIsOpenDrawer] = useState(false);
+  const [isOpenMenu, setIsOpenMenu] = useState(false);
+  const [isOpenCart, setIsOpenCart] = useState<boolean>(false);
 
   const handleOpenMenu = () => {
-    setIsOpenDrawer(true);
+    setIsOpenMenu(true);
   };
   const handleCloseMenu = () => {
-    setIsOpenDrawer(!isOpenDrawer);
+    setIsOpenMenu(!isOpenMenu);
+  };
+
+  const handleOpenCart = () => {
+    setIsOpenCart(true);
+  };
+  const handleCloseCart = () => {
+    setIsOpenCart(!isOpenCart);
   };
 
   return (
     <Container>
-      <Menu isOpen={isOpenDrawer} requestClose={handleCloseMenu} />
+      <Menu isOpen={isOpenMenu} requestClose={handleCloseMenu} />
 
       <Content>
         <div className="left info">
@@ -45,13 +54,15 @@ function Header() {
           <IconButton>
             <SearchIcon fontSize="large" />
           </IconButton>
-          <IconButton>
+          <IconButton onClick={handleOpenCart}>
             <StyledBadge badgeContent={3}>
               <ShoppingBagOutlinedIcon fontSize="large" />
             </StyledBadge>
           </IconButton>
         </div>
       </Content>
+
+      <MenuCart isOpen={isOpenCart} requestClose={handleCloseCart} />
     </Container>
   );
 }

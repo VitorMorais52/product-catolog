@@ -1,4 +1,9 @@
 import { useEffect, useState } from "react";
+import { useQuery } from "react-query";
+import axios from "axios";
+
+//components
+import MenuCart from "../../common/menuCart";
 
 //stylesheets
 import { Container, Grid } from "./styles";
@@ -16,15 +21,17 @@ type Products = {
 function Home() {
   const [products, setProducts] = useState<Products[]>([]);
 
-  useEffect(() => {
-    fetch("https://fakestoreapi.com/products")
-      .then((res) => res.json())
-      .then((json) => setProducts(json));
-  }, []);
+  const { data, isFetching } = useQuery<Products[]>(
+    "products",
+    async () => {
+      const response = await axios.get("https://fakestoreapi.com/products");
 
-  useEffect(() => {
-    if (products.length > 0) console.log(products[0]);
-  }, [products]);
+      return response.data;
+    },
+    {
+      staleTime: 1000 * 60, // 1 minute
+    }
+  );
 
   return (
     <Container>
@@ -35,7 +42,7 @@ function Home() {
         </div>
         <div className="container-grid">
           <Grid>
-            {products.map((product) => (
+            {data?.map((product) => (
               <div className="product">
                 <img src={product.image} alt="product" />
               </div>

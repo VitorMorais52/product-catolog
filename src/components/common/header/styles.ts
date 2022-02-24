@@ -57,6 +57,10 @@ export const Content = styled.div`
     align-items: center;
     flex: 1;
 
+    svg {
+      fill: black;
+    }
+
     span {
       font-size: 18px;
       font-weight: 500;

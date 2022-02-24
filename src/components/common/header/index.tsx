@@ -1,10 +1,12 @@
-import { useState } from "react";
-import Drawer from "@mui/material/Drawer";
-import IconButton from "@mui/material/IconButton";
+import { useState, useContext } from "react";
+import { ProductsContext } from "../../../services/context/products";
 
-//components
+//common components
 import Menu from "../menu";
 import MenuCart from "../menuCart";
+
+//@mui components
+import IconButton from "@mui/material/IconButton";
 
 //stylesheets and Icons
 import { Container, Content, StyledBadge } from "./styles";
@@ -18,6 +20,8 @@ import logoIcon from "../../../assets/logo.svg";
 function Header() {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
   const [isOpenCart, setIsOpenCart] = useState<boolean>(false);
+
+  const { products } = useContext(ProductsContext);
 
   const handleOpenMenu = () => {
     setIsOpenMenu(true);
@@ -55,7 +59,7 @@ function Header() {
             <SearchIcon fontSize="large" />
           </IconButton>
           <IconButton onClick={handleOpenCart}>
-            <StyledBadge badgeContent={3}>
+            <StyledBadge badgeContent={products.length}>
               <ShoppingBagOutlinedIcon fontSize="large" />
             </StyledBadge>
           </IconButton>

@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
+import { ProductsProvider } from "./services/context/products";
 import { QueryClientProvider } from "react-query";
 import { queryClient } from "./services/queryClient";
 
@@ -11,10 +12,12 @@ import { GlobalStyle } from "./styles/global";
 
 ReactDOM.render(
   <React.StrictMode>
-    <GlobalStyle />
     <QueryClientProvider client={queryClient}>
-      <App />
+      <ProductsProvider>
+        <App />
+      </ProductsProvider>
     </QueryClientProvider>
+    <GlobalStyle />
   </React.StrictMode>,
   document.getElementById("root")
 );

@@ -2,17 +2,12 @@ import styled from "styled-components";
 import Badge from "@mui/material/Badge";
 
 export const Container = styled.header`
-  margin-top: 1rem;
-  padding: 2rem 0;
-
-  @media (max-width: 1375px) {
-    width: 100%;
-    padding: 1rem;
-  }
-
-  @media (min-width: 1375px) {
-    min-width: 1375px;
-  }
+  width: 100%;
+  top: 0;
+  padding: 1rem 0;
+  position: fixed;
+  background-color: white;
+  z-index: 1;
 `;
 
 export const Content = styled.div`

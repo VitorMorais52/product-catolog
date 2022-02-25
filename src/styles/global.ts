@@ -31,6 +31,10 @@ export const GlobalStyle = createGlobalStyle`
         justify-content: center;
         align-items: center;
         background-color: #e1e0e0;
+        
+        main {
+            margin-top: 6rem;
+        }
 
     }
 

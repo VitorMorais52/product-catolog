@@ -9,6 +9,13 @@ export const Container = styled.div`
   @media (min-width: 300px) {
   }
 
+  .remove-product {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    color: rgba(0, 0, 0, 0.32);
+  }
+
   .addButton {
     display: flex;
     margin: 2rem 0;

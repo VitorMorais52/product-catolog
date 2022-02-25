@@ -77,5 +77,6 @@ export const InputQuantity = styled.input`
   cursor: inherit;
   text-align: center;
   background: rgba(0, 0, 0, 0.32);
+  color: white;
   border-radius: 4px;
 `;

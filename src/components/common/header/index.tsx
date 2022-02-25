@@ -21,7 +21,7 @@ function Header() {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
   const [isOpenCart, setIsOpenCart] = useState<boolean>(false);
 
-  const { products } = useContext(ProductsContext);
+  const { quantityItems } = useContext(ProductsContext);
 
   const handleOpenMenu = () => {
     setIsOpenMenu(true);
@@ -59,7 +59,7 @@ function Header() {
             <SearchIcon fontSize="large" />
           </IconButton>
           <IconButton onClick={handleOpenCart}>
-            <StyledBadge badgeContent={products.length}>
+            <StyledBadge badgeContent={quantityItems()}>
               <ShoppingBagOutlinedIcon fontSize="large" />
             </StyledBadge>
           </IconButton>

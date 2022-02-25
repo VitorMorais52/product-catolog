@@ -15,6 +15,7 @@ type ProductProps = {
   price: number;
   rating: Record<string, number>;
   title: string;
+  quantity: number;
 };
 
 function Home() {
@@ -40,7 +41,7 @@ function Home() {
         <div className="container-grid">
           <Grid>
             {(data || Array.from({ length: 8 })).map((product, index) => (
-              <Product product={product} index={index} />
+              <Product product={product} key={product?.id || index} />
             ))}
           </Grid>
         </div>

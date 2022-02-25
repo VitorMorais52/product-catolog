@@ -17,24 +17,24 @@ type ProductProps = {
   price: number;
   rating: Record<string, number>;
   title: string;
+  quantity: number;
 };
 
 type ProductComponentProps = {
   product?: ProductProps;
-  index?: number;
 };
 
-function Product({ product, index }: ProductComponentProps) {
-  const { products, storeProducts } = useContext(ProductsContext);
+function Product({ product }: ProductComponentProps) {
+  const { addSingleProduct } = useContext(ProductsContext);
 
   const addProductCart = (product: ProductProps) => {
-    storeProducts([...products, product]);
+    addSingleProduct(product);
   };
 
   return (
     <>
       {product?.id ? (
-        <Container key={product.id}>
+        <Container>
           <div className="image">
             <img src={product.image} alt="product" />
           </div>
@@ -53,7 +53,7 @@ function Product({ product, index }: ProductComponentProps) {
           </div>
         </Container>
       ) : (
-        <Container key={index}>
+        <Container>
           <Skeleton variant="rectangular" width={250} height={415}></Skeleton>
         </Container>
       )}

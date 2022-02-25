@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+type Props = {
+  activateEffects?: boolean;
+};
+
+export const Container = styled.div<Props>`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -8,15 +12,17 @@ export const Container = styled.div`
   background-color: white;
   cursor: pointer;
 
-  &:hover {
-    box-shadow: 0 0 20px rgba(33, 33, 33, 0.2);
+  ${({ activateEffects }) =>
+    activateEffects &&
+    `&:hover {
+      box-shadow: 0 0 20px rgba(33, 33, 33, 0.2);
 
-    img {
-      -moz-transform: scale(1.1);
-      -webkit-transform: scale(1.1);
-      transform: scale(1.1);
-    }
-  }
+      img {
+        -moz-transform: scale(1.1);
+        -webkit-transform: scale(1.1);
+        transform: scale(1.1);
+      }
+    }`}
 
   img {
     width: 250px;
@@ -32,6 +38,11 @@ export const Container = styled.div`
     flex-direction: column;
     font-weight: 500;
 
+    .detail-products {
+      padding: 0.5rem 0;
+      color: gray;
+    }
+
     .addButton {
       display: flex;
 
@@ -43,4 +54,28 @@ export const Container = styled.div`
       }
     }
   }
+
+  .legend-cart {
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background-color: #e1e0e0;
+    padding: 0 1rem;
+    border-radius: 4px;
+
+    span {
+      font-weight: bold;
+    }
+  }
+`;
+
+export const InputQuantity = styled.input`
+  max-width: 80px;
+  border: none;
+  background: inherit;
+  cursor: inherit;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.32);
+  border-radius: 4px;
 `;

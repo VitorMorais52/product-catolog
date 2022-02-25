@@ -9,13 +9,6 @@ export const Container = styled.div`
   @media (min-width: 300px) {
   }
 
-  .remove-product {
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-    color: rgba(0, 0, 0, 0.32);
-  }
-
   .addButton {
     display: flex;
     margin: 2rem 0;
@@ -26,6 +19,22 @@ export const Container = styled.div`
       color: white;
       font-weight: 700;
     }
+  }
+`;
+
+export const ContainerProduct = styled.div`
+  border: 1px solid rgba(0, 0, 0, 0.32);
+
+  div ~ & {
+    margin-top: 1rem;
+  }
+
+  .remove-product {
+    width: 100%;
+    padding: 4px 4px 0 0;
+    display: flex;
+    justify-content: flex-end;
+    color: rgba(0, 0, 0, 0.32);
   }
 `;
 

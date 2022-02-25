@@ -15,7 +15,7 @@ type ProductsContextProps = {
   products: Product[];
   storeProducts: (data: Product[]) => void;
   addSingleProduct: (data: Product, quantity?: number) => void;
-  removeSingleProduct: (data: Product) => void;
+  removeSingleProduct: (data: Product, isTottaly?: boolean) => void;
   quantityItems: () => number;
 };
 
@@ -65,12 +65,12 @@ export const ProductsProvider: React.FC = ({ children }) => {
     }
   };
 
-  const removeSingleProduct = (data: Product) => {
+  const removeSingleProduct = (data: Product, isTotally?: boolean) => {
     const indexProduct = products.findIndex(
       (product) => product.id === data.id
     );
 
-    if (products[indexProduct]?.quantity === 1) {
+    if (products[indexProduct]?.quantity === 1 || isTotally) {
       const newProducts = products.filter((product) => product.id !== data.id);
       setProducts([...newProducts]);
     } else {

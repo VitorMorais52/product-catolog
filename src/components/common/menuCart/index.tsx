@@ -11,9 +11,20 @@ import Product from "../product";
 import Button from "@mui/material/Button";
 
 //stylesheets and icons
-import { Container, NoProducts } from "./styles";
+import { Container, ContainerProduct, NoProducts } from "./styles";
 import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
 import CancelIcon from "@mui/icons-material/Cancel";
+
+type ProductProps = {
+  category: string;
+  description: string;
+  id: number;
+  image: string;
+  price: number;
+  rating: Record<string, number>;
+  title: string;
+  quantity: number;
+};
 
 type MenuCartProps = {
   isOpen: boolean;
@@ -21,17 +32,25 @@ type MenuCartProps = {
 };
 
 function Menu({ isOpen, requestClose }: MenuCartProps) {
-  const { products } = useContext(ProductsContext);
+  const { products, removeSingleProduct } = useContext(ProductsContext);
+
+  const removeTottalyProduct = (product: ProductProps) => {
+    removeSingleProduct(product, true);
+  };
   return (
     <Drawer open={isOpen} onClose={requestClose} anchor="right">
       {products.length > 0 ? (
         <Container>
-          <div className="remove-product">
-            <CancelIcon />
-          </div>
-
           {products.map((product) => (
-            <Product product={product} key={product.id} renderInCart={true} />
+            <ContainerProduct>
+              <div
+                className="remove-product"
+                onClick={() => removeTottalyProduct(product)}
+              >
+                <CancelIcon />
+              </div>
+              <Product product={product} key={product.id} renderInCart={true} />
+            </ContainerProduct>
           ))}
 
           <div className="addButton">

@@ -1,11 +1,13 @@
 import { useEffect, useState, useContext } from "react";
+
+//services
 import { ProductsContext } from "../../../services/context/products";
 
 //@mui components
 import Button from "@mui/material/Button";
 import Skeleton from "@mui/material/Skeleton";
 
-//stylesheets
+//stylesheets and icons
 import { Container } from "./styles";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 

@@ -6,7 +6,17 @@ export const Container = styled.div`
   justify-content: flex-end;
   align-items: center;
   background-color: white;
-  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: 0 0 20px rgba(33, 33, 33, 0.2);
+
+    img {
+      -moz-transform: scale(1.1);
+      -webkit-transform: scale(1.1);
+      transform: scale(1.1);
+    }
+  }
 
   img {
     width: 250px;

@@ -1,4 +1,6 @@
 import { useState, useContext } from "react";
+
+//services
 import { ProductsContext } from "../../../services/context/products";
 
 //common components
@@ -10,11 +12,9 @@ import IconButton from "@mui/material/IconButton";
 
 //stylesheets and Icons
 import { Container, Content, StyledBadge } from "./styles";
-
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
-
 import logoIcon from "../../../assets/logo.svg";
 
 function Header() {

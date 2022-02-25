@@ -43,6 +43,9 @@ export const Content = styled.div`
   }
   .right {
     justify-content: end;
+    @media (max-width: 1075px) {
+      margin-right: 10px;
+    }
   }
   .mid {
     justify-content: center;

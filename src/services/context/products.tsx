@@ -14,7 +14,8 @@ type Product = {
 type ProductsContextProps = {
   products: Product[];
   storeProducts: (data: Product[]) => void;
-  addSingleProduct: (data: Product) => void;
+  addSingleProduct: (data: Product, quantity?: number) => void;
+  removeSingleProduct: (data: Product) => void;
   quantityItems: () => number;
 };
 
@@ -22,6 +23,7 @@ const DEFAULT_VALUE = {
   products: [] as Product[],
   storeProducts: () => {},
   addSingleProduct: () => {},
+  removeSingleProduct: () => {},
   quantityItems: () => 0,
 };
 
@@ -35,7 +37,7 @@ export const ProductsProvider: React.FC = ({ children }) => {
     setProducts(data);
   };
 
-  const addSingleProduct = (data: Product) => {
+  const addSingleProduct = (data: Product, quantity?: number) => {
     const indexAlreadyExists = products.findIndex(
       (product) => product.id === data.id
     );
@@ -46,12 +48,35 @@ export const ProductsProvider: React.FC = ({ children }) => {
       const hasPropertyQuantity = Reflect.has(oldProduct, "quantity");
 
       const newProducts = products;
-      if (hasPropertyQuantity) newProducts[indexAlreadyExists].quantity += 1;
-      else newProducts[indexAlreadyExists] = { ...oldProduct, quantity: 1 };
+
+      if (hasPropertyQuantity) {
+        const newQuantity = quantity ? quantity : oldProduct.quantity + 1;
+
+        newProducts[indexAlreadyExists].quantity = newQuantity;
+      } else
+        newProducts[indexAlreadyExists] = {
+          ...oldProduct,
+          quantity: 1,
+        };
 
       setProducts([...newProducts]);
     } else {
       setProducts([...products, { ...data, quantity: 1 }]);
+    }
+  };
+
+  const removeSingleProduct = (data: Product) => {
+    const indexProduct = products.findIndex(
+      (product) => product.id === data.id
+    );
+
+    if (products[indexProduct]?.quantity === 1) {
+      const newProducts = products.filter((product) => product.id !== data.id);
+      setProducts([...newProducts]);
+    } else {
+      const newProducts = products;
+      newProducts[indexProduct].quantity -= 1;
+      setProducts([...newProducts]);
     }
   };
 
@@ -66,7 +91,13 @@ export const ProductsProvider: React.FC = ({ children }) => {
 
   return (
     <ProductsContext.Provider
-      value={{ products, storeProducts, addSingleProduct, quantityItems }}
+      value={{
+        products,
+        storeProducts,
+        addSingleProduct,
+        removeSingleProduct,
+        quantityItems,
+      }}
     >
       {children}
     </ProductsContext.Provider>

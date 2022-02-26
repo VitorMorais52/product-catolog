@@ -4,6 +4,10 @@ type Props = {
   activateEffects?: boolean;
 };
 
+type PropsImage = {
+  isLoaded: boolean;
+};
+
 export const Container = styled.div<Props>`
   display: flex;
   flex-direction: column;
@@ -79,4 +83,32 @@ export const InputQuantity = styled.input`
   background: rgba(0, 0, 0, 0.32);
   color: white;
   border-radius: 4px;
+`;
+
+export const Image = styled.div<PropsImage>`
+  ${({ isLoaded }) =>
+    !isLoaded &&
+    `
+    {
+    visibility: hidden;
+    display: none;
+  }
+
+  `}
+`;
+
+export const LoadingImg = styled.div<PropsImage>`
+  height: 100%;
+  display: flex;
+  padding-top: 1rem;
+  justify-content: flex-end;
+  ${({ isLoaded }) =>
+    isLoaded &&
+    `
+    {
+    visibility: hidden;
+    display: none;
+  }
+
+  `}
 `;

@@ -9,7 +9,7 @@ import IconButton from "@mui/material/IconButton";
 import Skeleton from "@mui/material/Skeleton";
 
 //stylesheets and icons
-import { Container, InputQuantity } from "./styles";
+import { Container, InputQuantity, Image, LoadingImg } from "./styles";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
@@ -31,6 +31,7 @@ type ProductComponentProps = {
 };
 
 function Product({ product, renderInCart }: ProductComponentProps) {
+  const [isLoadedImg, setIsLoadedImg] = useState(false);
   const { addSingleProduct, removeSingleProduct } = useContext(ProductsContext);
 
   const addProductCart = (product: ProductProps, quantity?: number) => {
@@ -45,9 +46,16 @@ function Product({ product, renderInCart }: ProductComponentProps) {
     <>
       {product?.id ? (
         <Container activateEffects={!renderInCart}>
-          <div className="image">
-            <img src={product.image} alt="product" />
-          </div>
+          <Image isLoaded={isLoadedImg}>
+            <img
+              src={product.image}
+              alt="product"
+              onLoad={() => setIsLoadedImg(true)}
+            />
+          </Image>
+          <LoadingImg isLoaded={isLoadedImg}>
+            <Skeleton variant="rectangular" width={230} height={260} />
+          </LoadingImg>
           {!renderInCart ? (
             <div className="legend">
               <span>{product.title}</span>

@@ -12,10 +12,12 @@ export const Container = styled.div`
   transform: translate(-50%, -50%);
 
   .content {
-    display: flex;
     justify-content: center;
     span {
       margin-right: 0.5rem;
+    }
+    @media (min-width: 768px) {
+      display: flex;
     }
   }
 `;

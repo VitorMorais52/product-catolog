@@ -33,11 +33,11 @@ export const Content = styled.div`
 
     * ~ * {
       @media (max-width: 600px) {
-        padding-left: 1rem;
+        margin-left: 1rem;
       }
 
       @media (min-width: 600px) {
-        padding-left: 3rem;
+        margin-left: 3rem;
       }
     }
   }
@@ -68,6 +68,12 @@ export const Content = styled.div`
     @media (max-width: 600px) {
       visibility: hidden;
       display: none;
+    }
+
+    a {
+      color: #000;
+      text-decoration: none;
+      font-size: 18px;
     }
   }
 `;

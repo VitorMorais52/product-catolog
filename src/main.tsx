@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
+//services
 import { ProductsProvider } from "./services/context/products";
 import { QueryClientProvider } from "react-query";
 import { queryClient } from "./services/queryClient";

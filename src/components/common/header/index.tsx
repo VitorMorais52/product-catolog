@@ -6,6 +6,7 @@ import { ProductsContext } from "../../../services/context/products";
 //common components
 import Menu from "../menu";
 import MenuCart from "../menuCart";
+import NotImplementedModal from "../notImplementedModal";
 
 //@mui components
 import IconButton from "@mui/material/IconButton";
@@ -18,8 +19,9 @@ import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 import logoIcon from "../../../assets/logo.svg";
 
 function Header() {
-  const [isOpenMenu, setIsOpenMenu] = useState(false);
+  const [isOpenMenu, setIsOpenMenu] = useState<boolean>(false);
   const [isOpenCart, setIsOpenCart] = useState<boolean>(false);
+  const [openModal, setOpenModal] = useState<boolean>(false);
 
   const { quantityItems } = useContext(ProductsContext);
 
@@ -37,6 +39,10 @@ function Header() {
     setIsOpenCart(!isOpenCart);
   };
 
+  const handleOpenModal = () => setOpenModal(true);
+
+  const handleCloseModal = () => setOpenModal(false);
+
   return (
     <Container>
       <Menu isOpen={isOpenMenu} requestClose={handleCloseMenu} />
@@ -47,15 +53,19 @@ function Header() {
             <MenuIcon fontSize="large" />
           </IconButton>
           <div className="pages">
-            <span>Collections</span>
-            <span>Categories</span>
+            <a href="#" onClick={handleOpenModal}>
+              Collections
+            </a>
+            <a href="#" onClick={handleOpenModal}>
+              Categories
+            </a>
           </div>
         </div>
         <div className="mid info">
           <img src={logoIcon} alt="logo" />
         </div>
         <div className="right info">
-          <IconButton>
+          <IconButton onClick={handleOpenModal}>
             <SearchIcon fontSize="large" />
           </IconButton>
           <IconButton onClick={handleOpenCart}>
@@ -67,6 +77,10 @@ function Header() {
       </Content>
 
       <MenuCart isOpen={isOpenCart} requestClose={handleCloseCart} />
+      <NotImplementedModal
+        isOpen={openModal}
+        onRequestClose={handleCloseModal}
+      />
     </Container>
   );
 }

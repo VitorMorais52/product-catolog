@@ -19,7 +19,7 @@ type ProductProps = {
 };
 
 function Home() {
-  const { data, isFetching } = useQuery<ProductProps[]>(
+  const { data } = useQuery<ProductProps[]>(
     "products",
     async () => {
       const response = await axios.get("https://fakestoreapi.com/products");

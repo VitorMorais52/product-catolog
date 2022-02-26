@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from "react";
+import { useState, useContext } from "react";
 
 //services
 import { ProductsContext } from "../../../services/context/products";
